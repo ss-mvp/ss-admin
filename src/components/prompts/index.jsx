@@ -1,10 +1,23 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import plus from '../../assets/plus.svg'
 import PromptBar from './PromptBar'
 import PromptHeader from './PromptHeader'
 import AddPrompt from './AddPrompt'
+import { AxiosWithAuth } from '../../utils'
 
 export function Prompts() {
+    
+    const [ prompts, setPrompts ] = useState([])
+
+    useEffect(async()=> {
+        try{
+            const res = await AxiosWithAuth().get("/upload/")
+            setPrompts(res.data)
+        } catch(err){
+            console.log(err)
+        }
+    }, [])
+    
     return (
         <>
             <section className="prompts table-container mx-auto text-center">
@@ -18,7 +31,7 @@ export function Prompts() {
                     <PromptHeader />
                     <tbody>
                         {
-                            [0,1,2,3,4,5,6,7,8,9,10].map(el => <PromptBar />)
+                            prompts.map(el => <PromptBar eachPrompt={ el }/>)
                         }
                     </tbody>
                 </table>

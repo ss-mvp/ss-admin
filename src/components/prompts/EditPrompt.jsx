@@ -1,12 +1,12 @@
 import React, { useState } from 'react'
 import { AxiosWithAuth } from '../../utils'
 
-export default function EditPrompt() {
+export default function EditPrompt({ id, prompt }) {
 
-    const [updatedPrompt, setUpdatedPrompt] = useState({ prompt: "" })
+    const [updatedPrompt, setUpdatedPrompt] = useState({ id: id, prompt: prompt })
 
     const handleChange = e => {
-        setUpdatedPrompt({...updatedPrompt, uPrompt: e.target.value })
+        setUpdatedPrompt({...updatedPrompt, prompt: e.target.value })
     }
 
     const handleSubmit = async(e) => {
@@ -27,6 +27,7 @@ export default function EditPrompt() {
                                     <textarea
                                         className="form-control"
                                         name="prompt"
+                                        value="prompt"
                                         id="updatedPrompt"
                                         rows="10"
                                         onChange={ handleChange }
