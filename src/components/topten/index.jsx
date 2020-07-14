@@ -9,6 +9,9 @@ export function TopTenStories() {
                 <table className="table table-striped table-hover">
                     <TopTenHeader />
                     <tbody>
+                        {
+                            [1,2,3].map(el => <TopTenBar />)
+                        }
                     </tbody>
                 </table>
             </section>
