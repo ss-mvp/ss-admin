@@ -1,11 +1,12 @@
 import React from 'react'
 
-export default function Home() {
+export default function Home(props) {
     return (
         <>
             <NavBar>
-                <h2 className="ss-title">Story Squad</h2>
+                <h3>Admin Login</h3>
             </NavBar>
+            <LoginForm props={ props }/>
         </>
     )
 }
