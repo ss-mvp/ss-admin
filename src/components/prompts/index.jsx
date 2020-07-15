@@ -5,17 +5,18 @@ import PromptHeader from './PromptHeader'
 import AddPrompt from './AddPrompt'
 import { AxiosWithAuth } from '../../utils'
 
-export function Prompts() {
+export function Prompts({ props }) {
     
     const [ prompts, setPrompts ] = useState([])
 
-    useEffect(async()=> {
-        try{
-            const res = await AxiosWithAuth().get("/upload/")
-            setPrompts(res.data)
-        } catch(err){
-            console.log(err)
-        }
+    useEffect(()=> {
+        AxiosWithAuth().get("upload/all_prompts")
+            .then(res => {
+                setPrompts(res.data)
+            })
+            .catch(err => {
+                console.log(err)
+            })
     }, [])
     
     return (
@@ -28,10 +29,10 @@ export function Prompts() {
                 </div>
                 <AddPrompt />
                 <table className="table table-striped">
-                    <PromptHeader />
+                    <PromptHeader prompts={prompts}/>
                     <tbody>
                         {
-                            prompts.map(el => <PromptBar eachPrompt={ el }/>)
+                            prompts.map((el,ind) => <PromptBar key={el.id} eachPrompt={ el } props={props}/>)
                         }
                     </tbody>
                 </table>

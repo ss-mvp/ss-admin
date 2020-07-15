@@ -1,11 +1,11 @@
 import React from "react";
 import { Route, Redirect } from "react-router-dom";
 
-const PrivateRoute = ({ component: Component, ...rest }) => {
+export const PrivateRoute = ({ component: Component, ...rest }) => {
   return (
     <Route
       {...rest}
-      render={props => {
+      render={(props) => {
         if (localStorage.getItem("token")) {
           return <Component {...props} />;
         } else {
@@ -15,5 +15,3 @@ const PrivateRoute = ({ component: Component, ...rest }) => {
     />
   );
 };
-
-export default PrivateRoute

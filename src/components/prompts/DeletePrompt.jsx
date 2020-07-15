@@ -1,11 +1,19 @@
 import React from 'react'
+import { useHistory } from 'react-router-dom'
 import { AxiosWithAuth } from '../../utils/AxiosWithAuth'
 
-export default function DeletePrompt({ id, prompt }) {
+export default function DeletePrompt(props, eachPrompt) {
+
+    const history = useHistory()
+    
+    const { id, prompt } = props.eachPrompt
+    console.log(props.props)
 
     const deletePrompt = async(e) => {
         try {
-            await AxiosWithAuth.delete(`/${id}`)
+            const res = await AxiosWithAuth().delete(`upload/prompts/${id}`)
+            console.log(res.data.message)
+            history.push("/prompts")
         } catch(err) {
             console.log(err)
         }
@@ -13,7 +21,7 @@ export default function DeletePrompt({ id, prompt }) {
 
     return (
         <>
-            <div className="modal fade" id="deleteModal" tabindex="-1" role="dialog">
+            <div className="modal fade" id={`deleteModal${id}`} tabIndex="-1" role="dialog">
                 <div className="modal-dialog modal-dialog-centered">
                     <div className="modal-content">
                     <div className="modal-header">
@@ -27,7 +35,7 @@ export default function DeletePrompt({ id, prompt }) {
                     </div>
                     <div className="modal-footer">
                         <button type="button" className="btn btn-secondary" data-dismiss="modal">No</button>
-                        <button type="button" className="btn btn-primary" onClick={ deletePrompt }>Yes</button>
+                        <button type="button" className="btn btn-primary" data-dismiss="modal" onSubmit={ deletePrompt }>Yes</button>
                     </div>
                     </div>
                 </div>

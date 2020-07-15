@@ -1,5 +1,5 @@
 import React from 'react'
-import { NavBar, LoginForm } from '../components'
+import { LoginForm } from '../components'
 
 export function Home(props) {
     return (
