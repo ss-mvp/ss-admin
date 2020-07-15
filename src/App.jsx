@@ -1,13 +1,15 @@
 import React from 'react';
 import { Switch, Route } from 'react-router-dom'
-import { PromptPage, TopTenPage } from './pages';
+import { PromptPage, TopTenPage, Home } from './pages';
+import PrivateRoute from './utils'
 
 function App() {
   return (
     <div className="maindiv">
       <Switch>
+        <Route exact path="/" component={ Home } />
         <Route path="/topten" component={ TopTenPage } />
-        <Route path="/prompts" component={ PromptPage } />
+        <PrivateRoute path="/prompts" component={ PromptPage } />
       </Switch>
     </div>
   );

@@ -1,12 +1,14 @@
 import React from 'react'
+import { NavBar, LoginForm } from '../components'
 
-export default function Home(props) {
+export function Home(props) {
     return (
-        <>
-            <NavBar>
+        <> 
+            <div className="container-sm text-center d-flex flex-column justify-content-center">
+                <h1 className="ss-title text-primary">Story Squad</h1>
                 <h3>Admin Login</h3>
-            </NavBar>
-            <LoginForm props={ props }/>
+                <LoginForm props={ props }/>
+            </div>
         </>
     )
 }

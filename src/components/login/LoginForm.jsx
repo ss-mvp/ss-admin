@@ -1,10 +1,10 @@
 import React, { useState } from 'react'
 import { AxiosWithAuth } from '../../utils/AxiosWithAuth'
 
-export default function LoginForm({ props }) {
+export function LoginForm({ props }) {
 
     const [ credentials, setCredential ] = useState({
-        email: "",
+        username: "",
         password: ""
     })
 
@@ -16,8 +16,8 @@ export default function LoginForm({ props }) {
     const handleSubmit = async (e) => {
         e.preventDefault()
         try {
-            const res = await AxiosWithAuth().post("/auth/login", credentials)
-            localStorage.setItem('token', res.token)
+            const res = await AxiosWithAuth().post("admin/login", credentials)
+            localStorage.setItem('token', res.data.token)
             props.history.push("/topten")
         } catch (err) {
             console.log(err)
@@ -27,22 +27,22 @@ export default function LoginForm({ props }) {
     return (
         <>
             <form onSubmit={ handleSubmit }>
-                <div className="form-group">
-                    <label for="adminEmail">Email</label>
+                <div style={{width: '300px'}} className="form-group d-flex flex-column justify-content-center mx-auto">
+                    <label for="adminUsername">Username</label>
                     <input
-                        name="email"
+                        name="username"
                         type="text"
-                        id="adminEmail"
+                        id="adminUsername"
                         onChange = { handleChange }
                     />
-                    <label for="adminpassword">Admin</label>
+                    <label for="adminPassword">Password</label>
                     <input
                         name="password"
                         type="password"
                         id="adminPassword"
                         onChange = { handleChange }
                     />
-                    <button type="submit" className="btn btn-primary">
+                    <button type="submit" className="btn btn-primary my-3">
                         Sign In
                     </button>
                 </div>
