@@ -1,17 +1,49 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import { TopTenBar } from "./TopTenBar"
 import { TopTenHeader } from "./TopTenHeader"
+import { AxiosWithAuth } from '../../utils';
 
 export function TopTenStories() {
+
+    const [stories, setStories] = useState([]);
+    const [users, setUsers] = useState([]);
+
+    useEffect(() => {
+        AxiosWithAuth()
+        .get('admin/users')
+        .then(response => {
+            console.log('users', response)
+            setUsers(response.data.users);
+        })
+        .catch(err => console.log(err));
+    }, [])
+
+    useEffect(() => {
+        AxiosWithAuth()
+        .get('admin/')
+        .then(response => {
+            console.log('submissions', response)
+            setStories(response.data.submissions);
+        })
+        .catch(err => console.log(err));
+    }, [])
+
+
+
+
     return (
         <>
             <section className="table-container mx-auto my-5 text-center">
                 <table className="table table-striped table-hover">
                     <TopTenHeader />
+                    {/* {console.log(users)} */}
                     <tbody>
-                        {
-                            [1,2,3].map(el => <TopTenBar />)
-                        }
+                        {users && stories 
+                        ? stories.map(el => {
+                            const user = users.filter(element => element.id === el.userId)
+                            return <TopTenBar key={el.id} user={user} submission={el} /> 
+                        })
+                        : null}
                     </tbody>
                 </table>
             </section>

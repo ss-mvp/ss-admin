@@ -11,7 +11,7 @@ export default function AddPrompt(props) {
 
     const handleSubmit = async(e) => {
         e.preventDefault()
-        await AxiosWithAuth().post('/prompts', newPrompt)
+        await AxiosWithAuth().post('upload/add', newPrompt)
     }
 
     return (

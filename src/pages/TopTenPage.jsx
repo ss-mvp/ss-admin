@@ -2,6 +2,7 @@ import React from 'react'
 import { NavBar, TopTenStories } from '../components'
 
 export function TopTenPage() {
+    
     return (
         <>
             <NavBar>
