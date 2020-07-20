@@ -6,7 +6,7 @@ export function TopTenHeader() {
             <thead>
                 <tr>
                     {
-                        ["User", "Status", "Vote"].map(el => <th>{el}</th>)
+                        ["User", "Status", "Vote"].map((el, ind) => <th key={ind}>{el}</th>)
                     }
                 </tr>
             </thead>

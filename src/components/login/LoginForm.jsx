@@ -28,14 +28,14 @@ export function LoginForm({ props }) {
         <>
             <form onSubmit={ handleSubmit }>
                 <div style={{width: '300px'}} className="form-group d-flex flex-column justify-content-center mx-auto">
-                    <label for="adminUsername">Username</label>
+                    <label htmlFor="adminUsername">Username</label>
                     <input
                         name="username"
                         type="text"
                         id="adminUsername"
                         onChange = { handleChange }
                     />
-                    <label for="adminPassword">Password</label>
+                    <label htmlFor="adminPassword">Password</label>
                     <input
                         name="password"
                         type="password"
