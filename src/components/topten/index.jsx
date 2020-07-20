@@ -2,11 +2,13 @@ import React, { useState, useEffect } from 'react'
 import { TopTenBar } from "./TopTenBar"
 import { TopTenHeader } from "./TopTenHeader"
 import { AxiosWithAuth } from '../../utils';
+import dummy from './dummy.json'
 
 export function TopTenStories() {
 
     const [stories, setStories] = useState([]);
     const [users, setUsers] = useState([]);
+    const [allVotes, setAllVotes] = useState([])
 
     useEffect(() => {
         AxiosWithAuth()
@@ -28,9 +30,6 @@ export function TopTenStories() {
         .catch(err => console.log(err));
     }, [])
 
-
-
-
     return (
         <>
             <section className="table-container mx-auto my-5 text-center">
@@ -38,14 +37,29 @@ export function TopTenStories() {
                     <TopTenHeader />
                     {/* {console.log(users)} */}
                     <tbody>
-                        {users && stories 
+                        {/* {users && stories 
                         ? stories.map(el => {
                             const user = users.filter(element => element.id === el.userId)
                             return <TopTenBar key={el.id} user={user} submission={el} /> 
                         })
-                        : null}
+                        : null} */}
+                        {
+                            dummy.map(el =>
+                                <TopTenBar 
+                                    userId={el.id}
+                                    key={el.id}
+                                    username={el.username}
+                                    status={el.status}
+                                    allVotes={allVotes}
+                                    setAllVotes={setAllVotes}/>
+                            )
+                                
+                        }
                     </tbody>
                 </table>
+                <div className="submit-votes-btn d-flex justify-content-end">
+                    <button className="btn btn-primary px-5">Submit Votes</button>
+                </div>
             </section>
         </>
     )

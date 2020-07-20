@@ -1,0 +1,27 @@
+[
+    {
+        "id" : 1,
+        "username": "derp",
+        "status": "read"
+    },
+    {
+        "id" : 2,
+        "username": "derpa",
+        "status": "read"
+    },
+    {
+        "id" : 3,
+        "username": "derp",
+        "status": "read"
+    },
+    {
+        "id" : 4,
+        "username": "roo-derp",
+        "status": "read"
+    },
+    {
+        "id" : 5,
+        "username": "deladerp",
+        "status": "read"
+    }
+]
