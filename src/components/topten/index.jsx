@@ -2,11 +2,13 @@ import React, { useState, useEffect } from 'react'
 import { TopTenBar } from "./TopTenBar"
 import { TopTenHeader } from "./TopTenHeader"
 import { AxiosWithAuth } from '../../utils';
+import dummy from './dummy.json'
 
 export function TopTenStories() {
 
     const [stories, setStories] = useState([]);
     const [users, setUsers] = useState([]);
+    const [allVotes, setAllVotes] = useState([])
 
     useEffect(() => {
         AxiosWithAuth()
@@ -41,8 +43,23 @@ export function TopTenStories() {
                             return <TopTenBar key={ind} user={user} submission={el} /> 
                         })
                         : null}
+                        {
+                            dummy.map(el =>
+                                <TopTenBar 
+                                    userId={el.id}
+                                    key={el.id}
+                                    username={el.username}
+                                    status={el.status}
+                                    allVotes={allVotes}
+                                    setAllVotes={setAllVotes}/>
+                            )
+                                
+                        }
                     </tbody>
                 </table>
+                <div className="submit-votes-btn d-flex justify-content-end">
+                    <button className="btn btn-primary px-5">Submit Votes</button>
+                </div>
             </section>
         </>
     )

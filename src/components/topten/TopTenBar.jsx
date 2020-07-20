@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import StoryModal from './StoryModal'
+import VoteButton from './votes/VoteButton'
 import { AxiosWithAuth } from '../../utils';
 
 export function TopTenBar(props) {
@@ -37,6 +38,9 @@ export function TopTenBar(props) {
                     {console.log(props.submission)}
                     <StoryModal submission={props.submission} />
                     <button className="btn btn-primary m-2 px-4">Vote</button>
+                    <button className="btn btn-outline-primary m-2 px-4" data-toggle="modal" data-target="#storyModal">View</button>
+                    {/* <StoryModal submission={props.submission} /> */}
+                    <VoteButton allVotes={props.allVotes} setAllVotes={props.setAllVotes} userId={props.userId}/>
                     {flagged
                     ? <button type="submit" onClick={handleSubmit} id={id} className="btn btn-primary m-2 px-4">Un-Flag</button>
                     :<button type="submit" onClick={handleSubmit} id={id} className="btn btn-danger m-2 px-4">Flag</button>}
