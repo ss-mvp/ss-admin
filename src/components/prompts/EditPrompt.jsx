@@ -4,7 +4,7 @@ import { AxiosWithAuth } from '../../utils'
 
 export default function EditPrompt(props, eachPrompt) {
 
-    const { id, prompt } = eachPrompt
+    const { id, prompt } = props.eachPrompt
     const [updatedPrompt, setUpdatedPrompt] = useState({
         prompt: prompt
     })
@@ -17,13 +17,12 @@ export default function EditPrompt(props, eachPrompt) {
     }
 
     const handleSubmit = async(e) => {
-        e.preventDefault()
-        await AxiosWithAuth().put(`prompts/${id}`, updatedPrompt)
-        history.push("/topten")
+        await AxiosWithAuth().put(`upload/edit/${id}`, updatedPrompt)
+        history.push("/prompts")
     }
 
     return (
-            <div className="modal fade" id={`editPrompt${id}`} tabIndex="-1" role="dialog" aria-hidden="true">
+            <div className="modal fade" id={`editModal${id}`} tabindex="-1" role="dialog">
                 <div className="modal-dialog modal-dialog-centered">
                     <div className="modal-content">
                         <div className="title bg-primary text-white">
@@ -46,6 +45,6 @@ export default function EditPrompt(props, eachPrompt) {
                         </div>
                     </div>
                 </div>
-            </div>
+        </div>
     )
 }
