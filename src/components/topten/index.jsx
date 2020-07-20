@@ -20,16 +20,13 @@ export function TopTenStories() {
 
     useEffect(() => {
         AxiosWithAuth()
-        .get('admin/')
+        .get('admin/winners')
         .then(response => {
             console.log('submissions', response)
-            setStories(response.data.submissions);
+            setStories(response.data.subs);
         })
         .catch(err => console.log(err));
     }, [])
-
-
-
 
     return (
         <>
@@ -39,9 +36,9 @@ export function TopTenStories() {
                     {/* {console.log(users)} */}
                     <tbody>
                         {users && stories 
-                        ? stories.map(el => {
+                        ? stories.map((el, ind) => {
                             const user = users.filter(element => element.id === el.userId)
-                            return <TopTenBar key={el.id} user={user} submission={el} /> 
+                            return <TopTenBar key={ind} user={user} submission={el} /> 
                         })
                         : null}
                     </tbody>

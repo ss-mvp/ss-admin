@@ -22,7 +22,7 @@ export default function EditPrompt(props, eachPrompt) {
     }
 
     return (
-            <div className="modal fade" id={`editModal${id}`} tabindex="-1" role="dialog">
+            <div className="modal fade" id={`editModal${id}`} tabIndex="-1" role="dialog">
                 <div className="modal-dialog modal-dialog-centered">
                     <div className="modal-content">
                         <div className="title bg-primary text-white">
