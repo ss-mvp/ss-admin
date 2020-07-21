@@ -18,7 +18,7 @@ export default function DeletePrompt(props, eachPrompt) {
 
     return (
         <>
-            <div className="modal fade" id={`deleteModal${id}`} tabindex="-1" role="dialog">
+            <div className="modal fade" id={`deleteModal${id}`} tabIndex="-1" role="dialog">
                 <div className="modal-dialog modal-dialog-centered">
                     <div className="modal-content">
                     <div className="modal-header">
