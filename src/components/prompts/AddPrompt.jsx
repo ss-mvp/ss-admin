@@ -13,10 +13,11 @@ export default function AddPrompt(props) {
     const handleSubmit = async(e) => {
         e.preventDefault()
         await AxiosWithAuth().post('upload/add', newPrompt)
+        history.push('/prompts')
     }
 
     return (
-        <div className="modal fade" id="addPrompt" tabindex="-1" role="dialog" aria-hidden="true">
+        <div className="modal fade" id="addPrompt" tabIndex="-1" role="dialog" aria-hidden="true">
             <div className="modal-dialog modal-dialog-centered">
                 <div className="modal-content">
                     <div className="title bg-primary text-white">

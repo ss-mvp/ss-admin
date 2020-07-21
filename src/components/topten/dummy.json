@@ -1,0 +1,37 @@
+[
+    {
+        "id" : 1,
+        "user": {
+            "username": "derp"
+        },
+        "status": "read"
+    },
+    {
+        "id" : 2,
+        "user": {
+            "username": "fakeTim"
+        },
+        "status": "read"
+    },
+    {
+        "id" : 3,
+        "user": {
+            "username": "counterfeitTim"
+        },
+        "status": "read"
+    },
+    {
+        "id" : 4,
+        "user": {
+            "username": "asianTim"
+        },
+        "status": "read"
+    },
+    {
+        "id" : 5,
+        "user": {
+            "username": "daTim"
+        },
+        "status": "read"
+    }
+]
