@@ -8,7 +8,7 @@ export function TopTenStories() {
 
     const [stories, setStories] = useState([]);
     const [users, setUsers] = useState([]);
-    const [allVotes, setAllVotes] = useState([])
+    const [allVotes, setAllVotes] = useState([2,4,1])
 
     useEffect(() => {
         AxiosWithAuth()
@@ -37,13 +37,13 @@ export function TopTenStories() {
                     <TopTenHeader />
                     {/* {console.log(users)} */}
                     <tbody>
-                        {users && stories 
+                        {users.length > 0 && stories.length > 0 
                         ? stories.map((el, ind) => {
                             const user = users.filter(element => element.id === el.userId)
-                            return <TopTenBar key={ind} user={user} submission={el} /> 
+                            return <TopTenBar key={ind} user={user} submission={el} votes={allVotes} setAllVotes={setAllVotes} /> 
                         })
                         : null}
-                        {
+                        {/* {
                             dummy.map(el =>
                                 <TopTenBar 
                                     userId={el.id}
@@ -54,7 +54,7 @@ export function TopTenStories() {
                                     setAllVotes={setAllVotes}/>
                             )
                                 
-                        }
+                        } */}
                     </tbody>
                 </table>
                 <div className="submit-votes-btn d-flex justify-content-end">

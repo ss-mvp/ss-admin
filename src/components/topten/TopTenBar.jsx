@@ -33,14 +33,10 @@ export function TopTenBar(props) {
             <tr>
                 <td>{props.user[0].username}</td>
                 <td>Status</td>
-                <td>
+                <td style={{ marginLeft: '30%', display: 'flex' }}>
                     <button className="btn btn-outline-primary m-2 px-4" data-toggle="modal" data-target="#storyModal">View</button>
-                    {console.log(props.submission)}
                     <StoryModal submission={props.submission} />
-                    <button className="btn btn-primary m-2 px-4">Vote</button>
-                    <button className="btn btn-outline-primary m-2 px-4" data-toggle="modal" data-target="#storyModal">View</button>
-                    {/* <StoryModal submission={props.submission} /> */}
-                    <VoteButton allVotes={props.allVotes} setAllVotes={props.setAllVotes} userId={props.userId}/>
+                    <VoteButton allVotes={props.allVotes} setAllVotes={props.setAllVotes} user={props.user}/>
                     {flagged
                     ? <button type="submit" onClick={handleSubmit} id={id} className="btn btn-primary m-2 px-4">Un-Flag</button>
                     :<button type="submit" onClick={handleSubmit} id={id} className="btn btn-danger m-2 px-4">Flag</button>}
