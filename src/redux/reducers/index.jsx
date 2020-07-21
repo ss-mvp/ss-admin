@@ -19,93 +19,94 @@ export const rootReducers = (state = initialState, action) => {
         //type, users, submissions
         //added flagged and voted
         case GET_SUBMISSIONS_SUCCESS:
+            console.log(action)
             return {
                 ...state,
-                submissions: action.submissions.map(el => {
+                submissions: action.submissions.data.subs.map(el => {
                     return {
                         ...el,
-                        user: action.users.filter(user => user.id === el.userId)[0],
-                        vote: false
+                        user: action.users.data.users.filter(user => parseInt(user.id) === parseInt(el.userId)),
+                        // vote: false
                     }
                 })
             }
-            case ADMIN_VOTE:
-                if (state.votes.length < 3){
-                    return {
-                        ...state,
-                        submissions: state.submissions.map(el=> {
-                            if (el.id === action.payload) {
-                                return { ...el, vote: true}
-                            }
-                            return el
-                        }),
-                        votes: [...state.votes, action.payload]
-                    }
-                } else {
-                    let first = state.votes[0]
-                    let newVotes = [...state.votes, action.payload]
-                    return {
-                        ...state,
-                        submissions: state.submissions.map(el=> {
+        case ADMIN_VOTE:
+            if (state.votes.length < 3){
+                return {
+                    ...state,
+                    submissions: state.submissions.map(el=> {
                         if (el.id === action.payload) {
-                            return { ...el, vote: true }
-                        }
-                        if (el.id === first){
-                            return { ...el, vote: false }
+                            return { ...el, vote: true}
                         }
                         return el
                     }),
-                    votes: newVotes.filter(each => each !== first)
+                    votes: [...state.votes, action.payload]
+                }
+            } else {
+                let first = state.votes[0]
+                let newVotes = [...state.votes, action.payload]
+                return {
+                    ...state,
+                    submissions: state.submissions.map(el=> {
+                    if (el.id === action.payload) {
+                        return { ...el, vote: true }
                     }
+                    if (el.id === first){
+                        return { ...el, vote: false }
+                    }
+                    return el
+                }),
+                votes: newVotes.filter(each => each !== first)
                 }
-                
-            case ADMIN_UNVOTE:
-                return {
-                    ...state,
-                    submissions: state.submissions.map(el => {
-                        if (el.id === action.payload) {
-                            return { ...el, vote: false }
-                        }
-                        return el
-                    }),
-                    votes: state.votes.filter(each => each !== action.payload)
-                }
-                
-            case ADMIN_SUBMIT_VOTE:
-                return {
-                    ...state,
-                    hasAdminVoted: true //this is to disabled submit button
-                }
+            }
+            
+        case ADMIN_UNVOTE:
+            return {
+                ...state,
+                submissions: state.submissions.map(el => {
+                    if (el.id === action.payload) {
+                        return { ...el, vote: false }
+                    }
+                    return el
+                }),
+                votes: state.votes.filter(each => each !== action.payload)
+            }
+            
+        case ADMIN_SUBMIT_VOTE:
+            return {
+                ...state,
+                hasAdminVoted: true //this is to disabled submit button
+            }
 
-                case ADMIN_FLAG:
-                    return {
-                        ...state,
-                        submissions: state.submissions.map(el=> {
-                            if (el.id === action.payload) {
-                                return { ...el, flagged: true}
-                            }
-                            return el
-                        }),
-                        flagged: [...state.flagged, action.payload]
-                    }
-        
-                case ADMIN_UNFLAG:
-                    return {
-                        ...state,
-                        submissions: state.submissions.map(el=> {
-                            if (el.id === action.payload) {
-                                return { ...el, vote: false }
-                            }
-                            return el
-                        }),
-                        flagged: state.flagged.filter(each => each !== action.payload)
-                    }
-                    
-                case ADMIN_SUBMIT_FLAG:
-                    return {
-                        ...state,
-                        hasAdminFlagged: true
-                    }
+            case ADMIN_FLAG:
+                return {
+                    ...state,
+                    submissions: state.submissions.map(el=> {
+                        if (el.id === action.payload) {
+                            return { ...el, flagged: true}
+                        }
+                        return el
+                    }),
+                    flagged: [...state.flagged, action.payload]
+                }
+    
+            case ADMIN_UNFLAG:
+                return {
+                    ...state,
+                    submissions: state.submissions.map(el=> {
+                        if (el.id === action.payload) {
+                            return { ...el, flagged: false }
+                        }
+                        return el
+                    }),
+                    flagged: state.flagged.filter(each => each !== action.payload)
+                }
+                
+            case ADMIN_SUBMIT_FLAG:
+                return {
+                    ...state,
+                    hasAdminFlagged: true
+                }
         default:
             return state;
     }

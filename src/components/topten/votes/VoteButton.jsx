@@ -11,7 +11,7 @@ export default function VoteButton({ id, vote }) {
     }
 
     const handleUnvote = () => {
-         dispatch(adminVote(id))
+         dispatch(adminUnvote(id))
     }
 
     return (

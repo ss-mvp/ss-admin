@@ -3,18 +3,12 @@ import { TopTenBar } from "./TopTenBar"
 import { TopTenHeader } from "./TopTenHeader"
 import { getSubmissions, adminSubmitFlag, adminSubmitVote } from '../../redux/actions'
 import { useDispatch, useSelector } from 'react-redux'
-import dummy from './dummy.json'
+// import dummy from './dummy.json'
 
 export function TopTenStories() {
 
-<<<<<<< HEAD
-    const [stories, setStories] = useState([]);
-    const [users, setUsers] = useState([]);
-    const [allVotes, setAllVotes] = useState([2,4,1])
-=======
-    const { hasAdminVoted, hasAdminFlagged, allSubmissions } = useSelector(state => state)
+    const { hasAdminVoted, hasAdminFlagged, submissions } = useSelector(state => state)
     const dispatch = useDispatch();
->>>>>>> 88e835fe033f52016a75210dab7efb7ecb6e3dd8
 
     useEffect(() => {
         dispatch(getSubmissions())
@@ -35,10 +29,10 @@ export function TopTenStories() {
                     <TopTenHeader />
                     {/* {console.log(users)} */}
                     <tbody>
-                        { allSubmissions 
-                        ? allSubmissions.map((el, index) => <TopTenBar key={index} user={el.user} submission={el} />)
+                        { submissions 
+                        ? submissions.map((el, index) => <TopTenBar key={index} user={el.user} submission={el} />)
                         : null} 
-                        {
+                        {/* {
                             dummy.map((el, index) =>
                                 <TopTenBar 
                                     key={index}

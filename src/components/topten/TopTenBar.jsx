@@ -20,6 +20,7 @@ export function TopTenBar(props) {
     return (
         <>
             <tr>
+                {console.log(props)}
                 <td>{props.user.username}</td>
                 <td>Status</td>
                 <td style={{ marginLeft: '30%', display: 'flex' }}>
