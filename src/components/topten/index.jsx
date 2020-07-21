@@ -7,7 +7,7 @@ import { useDispatch, useSelector } from 'react-redux'
 
 export function TopTenStories() {
 
-    const { hasAdminVoted, hasAdminFlagged, submissions } = useSelector(state => state)
+    const { hasAdminVoted, hasAdminFlagged, submissions, votes } = useSelector(state => state)
     const dispatch = useDispatch();
 
     useEffect(() => {
@@ -27,7 +27,7 @@ export function TopTenStories() {
         <>
             <section className="table-container mx-auto my-5 text-center">
                 <table className="table table-striped table-hover">
-                    <TopTenHeader />
+                    <TopTenHeader votes={votes}/>
                     {/* {console.log(users)} */}
                     <tbody>
                         { submissions 
@@ -46,8 +46,9 @@ export function TopTenStories() {
                     </tbody>
                 </table>
                 <div className="submit-votes-btn d-flex justify-content-end">
+                    { hasAdminVoted ? <button className="btn"></button>: <button className="btn btn-success px-5 m-2" onClick={ handleSubmitVote }>Submit Flags</button> }
                     { hasAdminFlagged ? <button className="btn"></button>: <button className="btn btn-danger px-5 m-2" onClick={ handleSubmitFlag }>Submit Flags</button> }
-                    { hasAdminVoted ? <button className="btn"></button>: <button className="btn btn-primary px-5 m-2" onClick={ handleSubmitVote }>Submit Flags</button> }
+                    
                 </div>
             </section>
         </>

@@ -28,8 +28,8 @@ export function TopTenBar(props) {
                     <StoryModal submission={props.submission} />
                     <VoteButton submission={props.submission} />
                     {props.submission.flagged
-                    ? <button type="submit" onClick={ handleUnflag } id={props.index} className="btn btn-primary m-2 px-4">Un-Flag</button>
-                    :<button type="submit" onClick={ handleFlag } id={props.index} className="btn btn-danger m-2 px-4">Flag</button>}
+                    ? <button type="submit" onClick={ handleUnflag } id={props.index} className="btn btn-danger m-2 px-4">Un-Flag</button>
+                    :<button type="submit" onClick={ handleFlag } id={props.index} className="btn btn-warning m-2 px-4">Flag</button>}
                 </td>
             </tr>
         </>

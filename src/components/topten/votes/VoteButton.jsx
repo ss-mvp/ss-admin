@@ -25,7 +25,7 @@ export default function VoteButton(props) {
                 <button
                     id={`unVote${props.submission.id}`}
                     value={props.submission.id}
-                    className='btn btn-dark m-2 px-4'
+                    className='btn btn-success m-2 px-4'
                     onClick={handleUnvote}
                     >
                     Vote
