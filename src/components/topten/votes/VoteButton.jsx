@@ -1,59 +1,42 @@
-import React, { useEffect, useState } from 'react'
+import React from 'react'
+import { useDispatch } from 'react-redux'
+import { adminVote, adminUnvote } from '../../../redux/actions'
 
-export default function VoteButton({ userId, allVotes, setAllVotes }) {
+export default function VoteButton({ id, vote }) {
 
-    const [isVoted, setVoted] = useState(false)
+    const dispatch = useDispatch()
 
-    useEffect(()=> {
-        if (allVotes.includes(userId)) {
-            setVoted(true)
-        } else {
-            setVoted(false)
-        }
-        console.log(isVoted)
-    }, [allVotes, setAllVotes])
-
-    const handleVote = e => {
-        if (allVotes.includes(userId) === false){
-            if (allVotes.length !== 3){
-                setAllVotes([...allVotes, e.target.value])
-            } else if (allVotes.length === 3) {
-                let new_allVotes = allVotes.shift()
-                console.log(new_allVotes)
-                setAllVotes([...new_allVotes, e.target.value])
-            }
-        }
-        console.log(allVotes)
+    const handleVote = () => {
+        dispatch(adminVote(id))
     }
 
-    const handleUnvote = e => {
-        const new_allVotes = allVotes.filter(el => el !== userId.toString())
-        setAllVotes(new_allVotes)
-
+    const handleUnvote = () => {
+         dispatch(adminVote(id))
     }
-    
+
     return (
         <div>
+            {console.log(vote)}
             {
-                isVoted ?
+                
+                vote ?
                 <button
-                    id={`toVote${userId}`}
-                    value={userId}
+                    id={`toVote${id}`}
+                    value={id}
                     className='btn btn-dark m-2 px-4'
-                    onClick={(e)=> handleUnvote(e)}
+                    onClick={handleVote}
                     >
                     Vote
                 </button>
                 :
                 <button
-                    id={`toVote${userId}`}
-                    value={userId}
+                    id={`toVote${id}`}
+                    value={id}
                     className='btn btn-primary m-2 px-4'
-                    onClick={(e)=> handleVote(e)}
+                    onClick={handleUnvote}
                     >
                     Vote
                 </button>
-
             }
         </div>
     )
