@@ -2,38 +2,40 @@ import React from 'react'
 import { useDispatch } from 'react-redux'
 import { adminVote, adminUnvote } from '../../../redux/actions'
 
-export default function VoteButton({ id, vote }) {
+export default function VoteButton(props) {
 
     const dispatch = useDispatch()
 
     const handleVote = () => {
-        dispatch(adminVote(id))
+        console.log('vote', props.submission.id)
+        dispatch(adminVote(props.submission.id))
     }
 
     const handleUnvote = () => {
-         dispatch(adminUnvote(id))
+        console.log('un', props.submission.id)
+        dispatch(adminUnvote(props.submission.id))
     }
 
     return (
         <div>
-            {console.log(vote)}
+            {console.log(props.submission.vote)}
             {
                 
-                vote ?
+                props.submission.vote ?
                 <button
-                    id={`toVote${id}`}
-                    value={id}
+                    id={`unVote${props.submission.id}`}
+                    value={props.submission.id}
                     className='btn btn-dark m-2 px-4'
-                    onClick={handleVote}
+                    onClick={handleUnvote}
                     >
                     Vote
                 </button>
                 :
                 <button
-                    id={`toVote${id}`}
-                    value={id}
+                    id={`toVote${props.submission.id}`}
+                    value={props.submission.id}
                     className='btn btn-primary m-2 px-4'
-                    onClick={handleUnvote}
+                    onClick={handleVote}
                     >
                     Vote
                 </button>

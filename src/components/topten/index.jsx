@@ -15,7 +15,8 @@ export function TopTenStories() {
     }, [])
 
     const handleSubmitFlag = () =>{
-        dispatch(adminSubmitFlag())
+        console.log(submissions);
+        // dispatch(adminSubmitFlag())
     }
 
     const handleSubmitVote = () =>{
@@ -30,7 +31,7 @@ export function TopTenStories() {
                     {/* {console.log(users)} */}
                     <tbody>
                         { submissions 
-                        ? submissions.map((el, index) => <TopTenBar key={index} user={el.user} submission={el} />)
+                        ? submissions.map(el => <TopTenBar key={el.id} index={el.id} user={el.user} submission={el} />)
                         : null} 
                         {/* {
                             dummy.map((el, index) =>
