@@ -23,11 +23,16 @@ export const Video = () => {
     }
 
     return (
-        <form onSubmit={handleSubmit}>
-            <div className="form-group">
-                <input name='link' onChange={handleLinkChange} value={link.link} className="form-control form-control-lg" type="text" placeholder="YouTube Link" />
-                <button type="submit" className="btn btn-primary">Submit</button>
+
+        <div className="card" style={{margin: '10% auto', width: "25rem" }}>
+            <div className="card-body">
+                <form onSubmit={handleSubmit}>
+                    <div className="form-group">
+                        <input name='link' onChange={handleLinkChange} value={link.link} className="form-control form-control-lg" type="text" placeholder="YouTube Link" />
+                        <button type="submit" className="btn btn-primary">Submit</button>
+                    </div>
+                </form>
             </div>
-        </form>
+        </div>
     )
 }
