@@ -8,7 +8,7 @@ export function TopTenBar({ submission, hasAdminVoted }) {
     return (
         <>
             <tr>
-                <td>{ submission.user.username }</td>
+                <td>{ submission.username }</td>
                 <td>Status</td>
                 <td style={{ marginLeft: '30%', display: 'flex' }}>
                     <button className="btn btn-outline-primary m-2 px-4" data-toggle="modal" data-target="#storyModal">View</button>
