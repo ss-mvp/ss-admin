@@ -26,13 +26,19 @@ export const rootReducers = (state = initialState, action) => {
         //type, users, submissions
         //added flagged and voted
         case GET_SUBMISSIONS_SUCCESS || ADMIN_SUBMIT_VOTE_SUCCESS:
-
+            const topThreeExist = action.submissions.data.subs.filter(el => el.topThree === true)
+            let hasVoted;
+            if (topThreeExist.length ===3){
+                hasVoted = true
+            } else {
+                hasVoted = false
+            }
             return {
                 ...state,
                 submissions: action.submissions.data.subs,
                 votes: action.submissions.data.subs.filter(el => el.vote === true),
-                topThree: action.submissions.data.subs.filter(el => el.topThree == true),
-                hasAdminVoted: ()=> state.topThree.length == 3 ? true: false
+                topThree: topThreeExist,
+                hasAdminVoted: hasVoted
             }
 
         case ADMIN_VOTE:
