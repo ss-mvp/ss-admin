@@ -1,13 +1,14 @@
 import { 
     ADMIN_FLAG, ADMIN_UNFLAG, ADMIN_SUBMIT_FLAG, 
     ADMIN_VOTE, ADMIN_UNVOTE, ADMIN_SUBMIT_VOTE,
-    GET_SUBMISSIONS_START, GET_SUBMISSIONS_SUCCESS, GET_SUBMISSIONS_FAIL
+    GET_SUBMISSIONS_START, GET_SUBMISSIONS_SUCCESS, GET_SUBMISSIONS_FAIL, ADMIN_SUBMIT_VOTE_SUCCESS
 } from '../actions'
 
 export const initialState = {
     submissions: [],
     votes: [],
     flagged: [],
+    prompt_id: null,
     isFetching: false,
     isFetched: true,
     hasAdminVoted: false,
@@ -18,25 +19,34 @@ export const rootReducers = (state = initialState, action) => {
     switch(action.type){
         //type, users, submissions
         //added flagged and voted
-        case GET_SUBMISSIONS_SUCCESS:
-            console.log(action)
+        case GET_SUBMISSIONS_SUCCESS || ADMIN_SUBMIT_VOTE_SUCCESS:
+
+            let hasVoted;
+            if (state.votes.length === 3){
+                hasVoted = true
+            } else {
+                hasVoted = false
+            }
             return {
                 ...state,
                 submissions: action.submissions.data.subs.map((el, index) => {
                     return {
                         ...el,
-                        id: index,
-                        user: action.users.data.users.filter(user => parseInt(user.id) === parseInt(el.userId)),
+                        id: index+1,
+                        user: action.users.data.users.filter(user => parseInt(user.id) === parseInt(el.userId))[0],
                         // vote: false
                     }
-                })
+                }),
+                votes: action.submissions.data.subs.filter(el => el.vote === true),
+                hasAdminVoted: hasVoted
             }
+            
         case ADMIN_VOTE:
             if (state.votes.length < 3){
                 return {
                     ...state,
                     submissions: state.submissions.map(el=> {
-                        if (el.id === action.payload) {
+                        if (el.id === action.payload.story_id) {
                             return { ...el, vote: true}
                         }
                         return el
@@ -49,15 +59,15 @@ export const rootReducers = (state = initialState, action) => {
                 return {
                     ...state,
                     submissions: state.submissions.map(el=> {
-                    if (el.id === action.payload) {
+                    if (el.id === action.payload.story_id) {
                         return { ...el, vote: true }
                     }
-                    if (el.id === first){
+                    if (el.id === first.story_id){
                         return { ...el, vote: false }
                     }
                     return el
                 }),
-                votes: newVotes.filter(each => each !== first)
+                votes: newVotes.filter(each => each.story_id !== first.story_id)
                 }
             }
             
@@ -65,12 +75,12 @@ export const rootReducers = (state = initialState, action) => {
             return {
                 ...state,
                 submissions: state.submissions.map(el => {
-                    if (el.id === action.payload) {
+                    if (el.id === action.payload.story_id) {
                         return { ...el, vote: false }
                     }
                     return el
                 }),
-                votes: state.votes.filter(each => each !== action.payload)
+                votes: state.votes.filter(each => each.story_id !== action.payload.story_id)
             }
             
         case ADMIN_SUBMIT_VOTE:
@@ -79,35 +89,37 @@ export const rootReducers = (state = initialState, action) => {
                 hasAdminVoted: true //this is to disabled submit button
             }
 
-            case ADMIN_FLAG:
-                return {
-                    ...state,
-                    submissions: state.submissions.map(el=> {
-                        if (el.id === action.payload) {
-                            return { ...el, flagged: true}
-                        }
-                        return el
-                    }),
-                    flagged: [...state.flagged, action.payload]
-                }
+        case ADMIN_FLAG:
+            return {
+                    
+                ...state,
+                submissions: state.submissions.map(el=> {
+                    if (el.id === action.payload) {
+                        return { ...el, flagged: true}
+                    }
+                    return el
+                }),
+                flagged: [...state.flagged, action.payload]
+            }
     
-            case ADMIN_UNFLAG:
-                return {
-                    ...state,
-                    submissions: state.submissions.map(el=> {
-                        if (el.id === action.payload) {
-                            return { ...el, flagged: false }
-                        }
-                        return el
-                    }),
-                    flagged: state.flagged.filter(each => each !== action.payload)
+    case ADMIN_UNFLAG:
+        return {
+            ...state,
+            submissions: state.submissions.map(el=> {
+                if (el.id === action.payload) {
+                    return { ...el, flagged: false }
                 }
-                
-            case ADMIN_SUBMIT_FLAG:
-                return {
-                    ...state,
-                    hasAdminFlagged: true
-                }
+                return el
+            }),
+            flagged: state.flagged.filter(each => each !== action.payload)
+        }
+        
+    case ADMIN_SUBMIT_FLAG:
+        return {
+            ...state,
+            hasAdminFlagged: true
+        }
+
         default:
             return state;
     }
