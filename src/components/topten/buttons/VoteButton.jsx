@@ -16,9 +16,10 @@ export default function VoteButton({ story_id, user_id, vote, topThree, hasAdmin
 
     return (
         <div>
-            { vote && <button id={`unVote${story_id}`} className='btn btn-success m-2 px-4' onClick={handleUnvote}> Voted </button> }
-            { !hasAdminVoted && !vote && <button id={`toVote${story_id}`} className='btn btn-primary m-2 px-4' onClick={handleVote}>Vote </button> }
-            { hasAdminVoted && !topThree && !vote && <button id={`voted${story_id}`} className='btn btn-muted m-2 px-4' disabled> Voted </button> }
+            { hasAdminVoted && vote && <button id={`vote${story_id}`} className='btn btn-success m-2 px-4' disabled> Voted </button> }
+            { hasAdminVoted && !vote && <button id={`vote${story_id}`} className='btn btn-mute m-2 px-4' disabled>Vote </button> }
+            { !hasAdminVoted && !vote && <button id={`toVoted${story_id}`} className='btn btn-primary m-2 px-4' onClick={handleVote}> Vote </button> }
+            { !hasAdminVoted && vote && <button id={`unVoted${story_id}`} className='btn btn-success m-2 px-4' onClick={handleUnvote}> Unvote </button> }
         </div>
     )
 }

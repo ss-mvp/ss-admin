@@ -27,25 +27,14 @@ export const rootReducers = (state = initialState, action) => {
         //added flagged and voted
         case GET_SUBMISSIONS_SUCCESS || ADMIN_SUBMIT_VOTE_SUCCESS:
 
-            let hasVoted;
-            if (state.votes.length === 3){
-                hasVoted = true
-            } else {
-                hasVoted = false
-            }
             return {
                 ...state,
-                submissions: action.submissions.data.subs.map((el, index) => {
-                    return {
-                        ...el,
-                        user: action.users.data.users.filter(user => parseInt(user.id) === parseInt(el.userId))[0],
-                        // vote: false
-                    }
-                }),
+                submissions: action.submissions.data.subs,
                 votes: action.submissions.data.subs.filter(el => el.vote === true),
-                hasAdminVoted: hasVoted
+                topThree: action.submissions.data.subs.filter(el => el.topThree == true),
+                hasAdminVoted: ()=> state.topThree.length == 3 ? true: false
             }
-            
+
         case ADMIN_VOTE:
             if (state.votes.length < 3){
                 return {
