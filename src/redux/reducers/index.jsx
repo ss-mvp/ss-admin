@@ -38,7 +38,6 @@ export const rootReducers = (state = initialState, action) => {
                 submissions: action.submissions.data.subs.map((el, index) => {
                     return {
                         ...el,
-                        id: index+1,
                         user: action.users.data.users.filter(user => parseInt(user.id) === parseInt(el.userId))[0],
                         // vote: false
                     }

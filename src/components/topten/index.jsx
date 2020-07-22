@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
 import { TopTenBar } from "./TopTenBar"
 import { TopTenHeader } from "./TopTenHeader"
-import { getSubmissions, adminSubmitFlag, adminSubmitVote } from '../../redux/actions'
+import { getSubmissions, adminSubmitVote } from '../../redux/actions'
 import { useDispatch, useSelector } from 'react-redux'
 
 export function TopTenStories({ props }) {
@@ -13,9 +13,9 @@ export function TopTenStories({ props }) {
         dispatch(getSubmissions())
     }, [])
 
-    const handleSubmitFlag = () =>{
-        dispatch(adminSubmitFlag(flagged))
-    }
+    // const handleSubmitFlag = () =>{
+    //     dispatch(adminSubmitFlag(flagged))
+    // }
 
     const handleSubmitVote = () =>{
         dispatch(adminSubmitVote({ prompt_id: submissions[0].prompt_id, votes }))
@@ -33,7 +33,7 @@ export function TopTenStories({ props }) {
                 </table>
                 <div className="submit-votes-btn d-flex justify-content-end">
                     { hasAdminVoted ? <button className="btn btn-muted" disabled>Top 3 Submitted</button>: <button className="btn btn-success px-5 m-2" onClick={ handleSubmitVote }>Submit Votes</button> }
-                    { hasAdminFlagged ? <button className="btn btn-danger" disabled>Flagged Contents Submitted</button>: <button className="btn btn-danger px-5 m-2" onClick={ handleSubmitFlag }>Submit Flags</button> }
+                    {/* { hasAdminFlagged ? <button className="btn btn-danger" disabled>Flagged Contents Submitted</button>: <button className="btn btn-danger px-5 m-2" onClick={ handleSubmitFlag }>Submit Flags</button> } */}
                 </div>
             </section>
         </>
