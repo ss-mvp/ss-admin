@@ -7,7 +7,7 @@ import { adminFlag, adminUnflag } from '../../redux/actions'
 
 export function TopTenBar(props) {
 
-    const [id] = useState(props.submission.id)
+    const [id] = useState(props.index)
     const dispatch = useDispatch()
     
     const handleFlag = () => {
@@ -20,7 +20,7 @@ export function TopTenBar(props) {
     return (
         <>
             <tr>
-                {console.log(props)}
+                {/* {console.log(props)} */}
                 <td>{props.submission.user[0].username}</td>
                 <td>Status</td>
                 <td style={{ marginLeft: '30%', display: 'flex' }}>

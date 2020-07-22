@@ -14,10 +14,10 @@ export function TopTenStories() {
         dispatch(getSubmissions())
     }, [])
 
-    const handleSubmitFlag = () =>{
-        console.log(submissions);
-        // dispatch(adminSubmitFlag())
-    }
+    // const handleSubmitFlag = () =>{
+    //     console.log(submissions);
+    //     // dispatch(adminSubmitFlag())
+    // }
 
     const handleSubmitVote = () =>{
         dispatch(adminSubmitVote())
@@ -46,8 +46,8 @@ export function TopTenStories() {
                     </tbody>
                 </table>
                 <div className="submit-votes-btn d-flex justify-content-end">
-                    { hasAdminFlagged ? <button className="btn"></button>: <button className="btn btn-danger px-5 m-2" onClick={ handleSubmitFlag }>Submit Flags</button> }
-                    { hasAdminVoted ? <button className="btn"></button>: <button className="btn btn-primary px-5 m-2" onClick={ handleSubmitVote }>Submit Flags</button> }
+                    {/* { hasAdminFlagged ? <button className="btn"></button>: <button className="btn btn-danger px-5 m-2" onClick={ handleSubmitFlag }>Submit Flags</button> } */}
+                    { hasAdminVoted ? <button className="btn"></button>: <button className="btn btn-primary px-5 m-2" onClick={ handleSubmitVote }>Submit Votes</button> }
                 </div>
             </section>
         </>

@@ -18,7 +18,7 @@ export default function VoteButton(props) {
 
     return (
         <div>
-            {console.log(props.submission.vote)}
+            {/* {console.log(props.submission.vote)} */}
             {
                 
                 props.submission.vote ?

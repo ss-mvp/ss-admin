@@ -1,7 +1,13 @@
+// import { 
+//     ADMIN_FLAG, ADMIN_UNFLAG, ADMIN_SUBMIT_FLAG, 
+//     ADMIN_VOTE, ADMIN_UNVOTE, ADMIN_SUBMIT_VOTE,
+//     GET_SUBMISSIONS_START, GET_SUBMISSIONS_SUCCESS, GET_SUBMISSIONS_FAIL
+// } from '../actions'
+
 import { 
-    ADMIN_FLAG, ADMIN_UNFLAG, ADMIN_SUBMIT_FLAG, 
-    ADMIN_VOTE, ADMIN_UNVOTE, ADMIN_SUBMIT_VOTE,
-    GET_SUBMISSIONS_START, GET_SUBMISSIONS_SUCCESS, GET_SUBMISSIONS_FAIL
+    ADMIN_FLAG, ADMIN_UNFLAG,
+    ADMIN_VOTE, ADMIN_UNVOTE, ADMIN_SUBMIT_VOTE, 
+    GET_SUBMISSIONS_SUCCESS
 } from '../actions'
 
 export const initialState = {
@@ -19,7 +25,7 @@ export const rootReducers = (state = initialState, action) => {
         //type, users, submissions
         //added flagged and voted
         case GET_SUBMISSIONS_SUCCESS:
-            console.log(action)
+            // console.log(action)
             return {
                 ...state,
                 submissions: action.submissions.data.subs.map((el, index) => {
@@ -84,7 +90,7 @@ export const rootReducers = (state = initialState, action) => {
                     ...state,
                     submissions: state.submissions.map(el=> {
                         if (el.id === action.payload) {
-                            return { ...el, flagged: true}
+                            return { ...el, flagged: true, hasAdminFlagged: true}
                         }
                         return el
                     }),
@@ -96,18 +102,18 @@ export const rootReducers = (state = initialState, action) => {
                     ...state,
                     submissions: state.submissions.map(el=> {
                         if (el.id === action.payload) {
-                            return { ...el, flagged: false }
+                            return { ...el, flagged: false, hasAdminFlagged: false }
                         }
                         return el
                     }),
                     flagged: state.flagged.filter(each => each !== action.payload)
                 }
                 
-            case ADMIN_SUBMIT_FLAG:
-                return {
-                    ...state,
-                    hasAdminFlagged: true
-                }
+            // case ADMIN_SUBMIT_FLAG:
+            //     return {
+            //         ...state,
+            //         hasAdminFlagged: true
+            //     }
         default:
             return state;
     }
