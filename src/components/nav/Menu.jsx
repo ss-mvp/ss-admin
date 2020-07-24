@@ -9,6 +9,9 @@ export default function Menu() {
             </li> 
             <li className="nav-item" >
                <Link to="/prompts" className="nav-link">Prompts</Link>
+            </li>
+            <li className="nav-item" >
+               <Link to="/video" className="nav-link">Video</Link>
             </li> 
         </ul>
     )

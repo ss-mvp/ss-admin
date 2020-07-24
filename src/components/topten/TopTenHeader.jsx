@@ -1,12 +1,12 @@
 import React from 'react'
 
-export function TopTenHeader() {
+export function TopTenHeader({ votes }) {
     return (
         <>
             <thead>
                 <tr>
                     {
-                        ["User", "Status", "Vote"].map((el, ind) => <th key={ind}>{el}</th>)
+                        ["User", "Status", `${votes.length} votes`].map((el, ind) => <th key={ind}>{el}</th>)
                     }
                 </tr>
             </thead>
