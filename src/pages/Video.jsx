@@ -15,7 +15,8 @@ export const Video = () => {
 
     const handleSubmit = e => {
         e.preventDefault();
-        AxiosWithAuth().post('http://localhost:5000/admin/video', link)
+        // AxiosWithAuth().post('http://localhost:5000/admin/video', link)
+        AxiosWithAuth().post('admin/video', link)
         .then(() => {
             history.push('/topten')
         })
