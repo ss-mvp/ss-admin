@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { AxiosWithAuth } from '../utils';
 import { useHistory } from 'react-router-dom';
+import { NavBar } from '../components'
 
 export const Video = () => {
 
@@ -24,7 +25,10 @@ export const Video = () => {
     }
 
     return (
-
+        <>
+        <NavBar>
+            <h3>Video</h3>
+        </NavBar>
         <div className="card" style={{margin: '10% auto', width: "25rem" }}>
             <div className="card-body">
                 <form onSubmit={handleSubmit}>
@@ -35,5 +39,6 @@ export const Video = () => {
                 </form>
             </div>
         </div>
+        </>
     )
 }

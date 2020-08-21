@@ -13,6 +13,9 @@ export default function Menu() {
             <li className="nav-item" >
                <Link to="/video" className="nav-link">Video</Link>
             </li> 
+            <li className="nav-item" >
+               <Link to="/winners" className="nav-link">Winners</Link>
+            </li> 
         </ul>
     )
 }
