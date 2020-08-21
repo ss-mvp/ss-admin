@@ -7,11 +7,12 @@
 import { 
     ADMIN_FLAG, ADMIN_UNFLAG, ADMIN_SUBMIT_FLAG, 
     ADMIN_VOTE, ADMIN_UNVOTE, ADMIN_SUBMIT_VOTE,
-    GET_SUBMISSIONS_START, GET_SUBMISSIONS_SUCCESS, GET_SUBMISSIONS_FAIL, ADMIN_SUBMIT_VOTE_SUCCESS
+    GET_SUBMISSIONS_START, GET_SUBMISSIONS_SUCCESS, GET_SUBMISSIONS_FAIL, ADMIN_SUBMIT_VOTE_SUCCESS, GET_WINNERS_START, GET_WINNERS_SUCCESS, GET_WINNERS_FAIL
 } from '../actions'
 
 export const initialState = {
     submissions: [],
+    winners: [],
     votes: [],
     flagged: [],
     prompt_id: null,
@@ -118,6 +119,13 @@ export const rootReducers = (state = initialState, action) => {
             //         ...state,
             //         hasAdminFlagged: true
             //     }
+
+            case GET_WINNERS_SUCCESS:
+                console.log('payload', action.payload)
+                return {
+                    ...state,
+                    winners: [...action.payload]
+                }
         default:
             return state;
     }

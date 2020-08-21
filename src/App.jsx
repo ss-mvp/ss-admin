@@ -1,6 +1,6 @@
 import React from 'react';
 import { Switch, Route } from 'react-router-dom'
-import { PromptPage, TopTenPage, Home, Video } from './pages';
+import { PromptPage, TopTenPage, Home, Video, WinnersPage} from './pages';
 import { PrivateRoute } from './utils'
 
 function App() {
@@ -11,6 +11,7 @@ function App() {
         <PrivateRoute path="/topten" component={ TopTenPage } />
         <PrivateRoute path="/prompts" component={ PromptPage } />
         <PrivateRoute path="/video" component={Video} />
+        <PrivateRoute path="/winners" component={WinnersPage} />
       </Switch>
     </div>
   );
