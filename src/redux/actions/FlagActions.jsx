@@ -6,12 +6,12 @@ export const ADMIN_SUBMIT_FLAG = "ADMIN_SUBMIT_FLAG"
 
 export const adminFlag = (id) => async (dispatch) => {
     dispatch({ type: ADMIN_FLAG, payload: id });
-    AxiosWithAuth().post(`https://ss-mvp.herokuapp.com/admin/flag/${id}`)
+    AxiosWithAuth().post(`https://server.storysquad.app/admin/flag/${id}`)
 };
 
 export const adminUnflag = (id) => async (dispatch) => {
     dispatch({ type: ADMIN_UNFLAG, payload: id });
-    AxiosWithAuth().post(`https://ss-mvp.herokuapp.com/admin/flag/${id}`)
+    AxiosWithAuth().post(`https://server.storysquad.app/admin/flag/${id}`)
 };
 
 // export const adminSubmitFlag = (payload) => async (dispatch) => {
