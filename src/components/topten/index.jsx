@@ -6,7 +6,7 @@ import { useDispatch, useSelector } from 'react-redux'
 
 export function TopTenStories({ props }) {
 
-    const { hasAdminVoted, hasAdminFlagged, submissions, votes, flagged } = useSelector(state => state)
+    const { hasAdminVoted, hasAdminFlagged, submissions, votes, flagged, squadScore, age } = useSelector(state => state)
     const dispatch = useDispatch();
 
     useEffect(() => {
@@ -28,7 +28,7 @@ export function TopTenStories({ props }) {
                 <table className="table table-striped table-hover">
                     <TopTenHeader votes={votes}/>
                     <tbody>
-                        { submissions && submissions.map(el => <TopTenBar key={el.id} index={el.id} user={el.user} submission={el} hasAdminVoted={hasAdminVoted} />) }
+                        { submissions && submissions.map(el => <TopTenBar key={el.id} index={el.id} user={el.user} submission={el} hasAdminVoted={hasAdminVoted} age={el.age} squadScore={el.score}/>) }
                     </tbody>
                 </table>
                 <div className="submit-votes-btn d-flex justify-content-end">

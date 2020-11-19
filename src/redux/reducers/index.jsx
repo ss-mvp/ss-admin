@@ -7,7 +7,10 @@
 import { 
     ADMIN_FLAG, ADMIN_UNFLAG, ADMIN_SUBMIT_FLAG, 
     ADMIN_VOTE, ADMIN_UNVOTE, ADMIN_SUBMIT_VOTE,
-    GET_SUBMISSIONS_START, GET_SUBMISSIONS_SUCCESS, GET_SUBMISSIONS_FAIL, ADMIN_SUBMIT_VOTE_SUCCESS, GET_WINNERS_START, GET_WINNERS_SUCCESS, GET_WINNERS_FAIL
+    GET_SUBMISSIONS_START, GET_SUBMISSIONS_SUCCESS, GET_SUBMISSIONS_FAIL, ADMIN_SUBMIT_VOTE_SUCCESS, GET_WINNERS_START, GET_WINNERS_SUCCESS, GET_WINNERS_FAIL,
+    GET_SQUADSCORE_START,
+    GET_SQUADSCORE_SUCCESS,
+    GET_SQUADSCORE_FAIL
 } from '../actions'
 
 export const initialState = {
@@ -19,8 +22,11 @@ export const initialState = {
     isFetching: false,
     isFetched: true,
     hasAdminVoted: false,
-    hasAdminFlagged: false
+    hasAdminFlagged: false,
+    age: 0,
+    squadScore: 0
 }
+
 
 export const rootReducers = (state = initialState, action) => {
     switch(action.type){
@@ -39,7 +45,9 @@ export const rootReducers = (state = initialState, action) => {
                 submissions: action.submissions.data.subs,
                 votes: action.submissions.data.subs.filter(el => el.vote === true),
                 topThree: topThreeExist,
-                hasAdminVoted: hasVoted
+                hasAdminVoted: hasVoted,
+                age: action.submissions.data.age,
+                squadScore: action.submissions.data.score
             }
 
         case ADMIN_VOTE:
