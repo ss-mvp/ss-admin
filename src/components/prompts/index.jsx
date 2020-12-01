@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import plus from '../../assets/plus.svg'
+// import plus from '../../assets/plus.svg'
 import PromptBar from './PromptBar'
 import PromptHeader from './PromptHeader'
 import AddPrompt from './AddPrompt'
@@ -24,7 +24,7 @@ export function Prompts({ props }) {
             <section className="prompts table-container mx-auto text-center">
                 <div className="float-right m-3 text-primary">
                     <button type="button" className="btn btn-light" data-toggle="modal" data-target="#addPrompt">
-                        <img src={plus} alt="add circle" />
+                        Add Prompt
                     </button>
                 </div>
                 <AddPrompt />
