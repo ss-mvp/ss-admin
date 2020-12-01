@@ -4,7 +4,7 @@ import { AxiosWithAuth } from '../../utils/AxiosWithAuth'
 export function LoginForm({ props }) {
 
     const [ credentials, setCredential ] = useState({
-        username: "",
+        email: "",
         password: ""
     })
 
@@ -16,7 +16,7 @@ export function LoginForm({ props }) {
     const handleSubmit = async (e) => {
         e.preventDefault()
         try {
-            const res = await AxiosWithAuth().post("admin/login", credentials)
+            const res = await AxiosWithAuth().post("email/login", credentials)
             localStorage.setItem('token', res.data.token)
             props.history.push("/topten")
         } catch (err) {
@@ -28,11 +28,11 @@ export function LoginForm({ props }) {
         <>
             <form onSubmit={ handleSubmit }>
                 <div style={{width: '300px'}} className="form-group d-flex flex-column justify-content-center mx-auto">
-                    <label htmlFor="adminUsername">Username</label>
+                    <label htmlFor="adminEmail">E-Mail</label>
                     <input
-                        name="username"
+                        name="email"
                         type="text"
-                        id="adminUsername"
+                        id="adminEmail"
                         onChange = { handleChange }
                     />
                     <label htmlFor="adminPassword">Password</label>
