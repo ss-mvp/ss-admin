@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from 'react';
-import StoryModal from './StoryModal';
-import VoteButton from './buttons/VoteButton';
-import FlagButton from './buttons/FlagButton';
+import React, { useState, useEffect } from "react";
+import StoryModal from "./StoryModal";
+import VoteButton from "./buttons/VoteButton";
+import FlagButton from "./buttons/FlagButton";
 
 export function TopTenBar({ submission, hasAdminVoted }) {
   return (
@@ -9,7 +9,7 @@ export function TopTenBar({ submission, hasAdminVoted }) {
       <tr>
         <td>{submission.username}</td>
         <td>Status</td>
-        <td style={{ marginLeft: '30%', display: 'flex' }}>
+        <td style={{ marginLeft: "30%", display: "flex" }}>
           <button
             className="btn btn-outline-primary m-2 px-4"
             data-toggle="modal"
@@ -27,6 +27,7 @@ export function TopTenBar({ submission, hasAdminVoted }) {
           />
           <FlagButton submission={submission} />
         </td>
+        <td>{submission.score}</td>
       </tr>
     </>
   );
