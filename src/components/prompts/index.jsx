@@ -10,7 +10,7 @@ export function Prompts({ props }) {
     const [ prompts, setPrompts ] = useState([])
 
     useEffect(()=> {
-        AxiosWithAuth().get("upload/all_prompts")
+        AxiosWithAuth().get("/api/contest/prompts")
             .then(res => {
                 setPrompts(res.data)
             })

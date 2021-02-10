@@ -1,8 +1,8 @@
-import React, { useEffect } from "react";
-import { TopTenBar } from "./TopTenBar";
-import { TopTenHeader } from "./TopTenHeader";
-import { getSubmissions, adminSubmitVote } from "../../redux/actions";
-import { useDispatch, useSelector } from "react-redux";
+import React, { useEffect } from 'react';
+import { TopTenBar } from './TopTenBar';
+import { TopTenHeader } from './TopTenHeader';
+import { getSubmissions, adminSubmitVote } from '../../redux/actions';
+import { useDispatch, useSelector } from 'react-redux';
 
 export function TopTenStories({ props }) {
   const {
@@ -23,8 +23,8 @@ export function TopTenStories({ props }) {
   // }
 
   const handleSubmitVote = () => {
-    dispatch(adminSubmitVote({ prompt_id: submissions[0].prompt_id, votes }));
-    props.history.push("/topten");
+    dispatch(adminSubmitVote({ votes }));
+    props.history.push('/topten');
   };
 
   return (
