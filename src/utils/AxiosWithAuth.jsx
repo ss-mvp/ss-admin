@@ -1,12 +1,14 @@
-import axios from "axios";
+import axios from 'axios';
+import { token } from '.';
+
+const baseURL = process.env.REACT_APP_SERVER_URL || 'http://localhost:8000';
 
 export const AxiosWithAuth = () => {
-  const token = localStorage.getItem("token");
+  const t = token.get();
   return axios.create({
-    baseURL: "https://server.storysquad.app/",
-    // baseURL: "http://localhost:5000/",
+    baseURL,
     headers: {
-      Authorization: token,
+      Authorization: t,
     },
   });
 };

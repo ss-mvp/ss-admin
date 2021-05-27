@@ -7,7 +7,7 @@ export function WinnerBar({ winner}) {
   return (
     <>
       <tr>
-        <td>{winner.username}</td>
+        <td>{winner.codename}</td>
         <td>{winner.score}</td>
         <td style={{ marginLeft: '30%', display: 'flex' }}>
           <button

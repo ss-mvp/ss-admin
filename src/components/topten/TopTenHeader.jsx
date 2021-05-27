@@ -1,15 +1,15 @@
-import React from "react";
+import React from 'react';
+
+const TOP_TEN_HEADERS = ['User', `Actions`, 'Squad Score'];
 
 export function TopTenHeader({ votes }) {
   return (
     <>
       <thead>
         <tr>
-          {["User", "Status", `${votes.length} votes`, "Squad Score"].map(
-            (el, ind) => (
-              <th key={ind}>{el}</th>
-            )
-          )}
+          {TOP_TEN_HEADERS.map((el, ind) => (
+            <th key={ind}>{el}</th>
+          ))}
         </tr>
       </thead>
     </>
