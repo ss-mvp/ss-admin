@@ -130,7 +130,7 @@ export const rootReducers = (state = initialState, action) => {
       console.log('payload', action.payload);
       return {
         ...state,
-        winners: [...action.payload],
+        winners: [...state.winners, action.payload],
       };
     case ADMIN_SUBMIT_VOTE_FAIL:
       return { ...state, hasAdminVoted: false };

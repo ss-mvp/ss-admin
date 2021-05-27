@@ -4,7 +4,7 @@ import { AxiosWithAuth } from '../../utils/AxiosWithAuth';
 
 export function LoginForm({ props }) {
   const [credentials, setCredential] = useState({
-    email: '',
+    codename: '',
     password: '',
   });
 
@@ -34,11 +34,11 @@ export function LoginForm({ props }) {
           style={{ width: '300px' }}
           className="form-group d-flex flex-column justify-content-center mx-auto"
         >
-          <label htmlFor="adminEmail">E-Mail</label>
+          <label htmlFor="adminCodename">Codename</label>
           <input
-            name="email"
+            name="codename"
             type="text"
-            id="adminEmail"
+            id="adminCodename"
             onChange={handleChange}
           />
           <label htmlFor="adminPassword">Password</label>

@@ -20,7 +20,7 @@ export const adminSubmitVote = (payload) => async (dispatch) => {
   console.log({ payload, ids });
   try {
     const response = await AxiosWithAuth().post(
-      `/api/contest/submissions/top`,
+      `/api/submissions/top`,
       { ids }
     );
     console.log(response.data);
