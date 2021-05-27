@@ -7,9 +7,8 @@ export function TopTenBar({ submission, hasAdminVoted }) {
   return (
     <>
       <tr>
-        <td>{submission.username}</td>
-        <td>Status</td>
-        <td style={{ marginLeft: "30%", display: "flex" }}>
+        <td>{submission.codename}</td>
+        <td style={{ display: "flex", justifyContent: 'space-evenly' }}>
           <button
             className="btn btn-outline-primary m-2 px-4"
             data-toggle="modal"

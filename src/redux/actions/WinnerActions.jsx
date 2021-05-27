@@ -7,7 +7,7 @@ export const GET_WINNERS_FAIL = "GET_WINNERS_FAIL"
 export const getWinners = () => async (dispatch) => {
     dispatch({type: GET_WINNERS_START});
     try{
-        const winners = await AxiosWithAuth().get("/ranking/winner");
+        const winners = await AxiosWithAuth().get("/api/submissions/winner");
         console.log('winners from actions', winners)
         dispatch({type: GET_WINNERS_SUCCESS, payload: winners.data})
 

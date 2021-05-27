@@ -22,6 +22,18 @@
 .table-container {
   max-width: 900px;
 }
+.table-container tr {
+  width: 100%;
+}
+.table-container tr th:nth-child(1),
+.table-container tr td:nth-child(1),
+.table-container tr th:nth-child(3),
+.table-container tr td:nth-child(3) {
+  width: 25%;
+};
+.table-container tr th:nth-child(2),
+.table-container tr td:nth-child(2) {
+  width: 50%;
 
 /*!
  * Bootstrap v4.5.0 (https://getbootstrap.com/)
